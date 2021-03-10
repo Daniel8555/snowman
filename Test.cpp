@@ -2,7 +2,7 @@
 #include "snowman.hpp"
 using namespace ariel;
 
-#include<string>
+#include <string>
 #include <algorithm>
 using namespace std;
 
@@ -11,12 +11,19 @@ using namespace std;
  * Requires std=c++2a.
  */
 string nospaces(string input) {
-	std::erase(input, ' ');
-	std::erase(input, '\t');
-	std::erase(input, '\n');
-	std::erase(input, '\r');
-	return input;
+       
+        input.erase(remove(input.begin(),input.end(),' '),input.end());
+       input.erase(remove(input.begin(),input.end(),'\t'),input.end());
+ input.erase(remove(input.begin(),input.end(),'\r'),input.end());
+  input.erase(remove(input.begin(),input.end(),'\n'),input.end());
+
+     //  std::erase(input, ' ');
+      // std::erase(input, '\t');
+       //std::erase(input, '\n');
+       //std::erase(input, '\r');
+       return input;
 }
+
 
 
 TEST_CASE("Good snowman code") {
@@ -34,8 +41,18 @@ TEST_CASE("Good snowman code") {
 
 TEST_CASE("Bad snowman code") {
     CHECK_THROWS(snowman(555));
-    CHECK_THROWS(snowman(1223334444));
-    CHECK_THROWS(snowman(56665));
+    CHECK_THROWS(snowman(1223444));
+    CHECK_THROWS(snowman(224));
+    CHECK_THROWS(snowman(134));
+     CHECK_THROWS(snowman(34));
+      CHECK_THROWS(snowman(1223334));
+     CHECK_THROWS(snowman(12434));
+
+      CHECK_THROWS(snowman(233434));
+   CHECK_THROWS(snowman(8));
+      CHECK_THROWS(snowman(4));
+      CHECK_THROWS(snowman(1));
+   
     /* Add more checks here */
 }
 
